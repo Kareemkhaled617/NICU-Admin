@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class InputField extends StatelessWidget {
   final String label;
   final String content;
+  final TextEditingController controller;
 
-  InputField({required this.label, required this.content});
+  InputField(
+      {required this.label, required this.content, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class InputField extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 3.7,
               color: Colors.blue[50],
               child: TextField(
+                controller: controller,
                 style: const TextStyle(
                   fontSize: 15.0,
                 ),

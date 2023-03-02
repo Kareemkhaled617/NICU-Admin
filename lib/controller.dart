@@ -111,3 +111,39 @@ login(
     print(e);
   }
 }
+
+login1(String email, pass, {context}) async {
+  try {
+    if (email.isNotEmpty && pass.isNotEmpty) {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: pass);
+      print(userCredential);
+      return userCredential;
+    } else {
+      print('isEmpty');
+    }
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.INFO,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Attend  !',
+        desc: 'This Account IsNot Exist',
+        btnCancelOnPress: () {},
+        btnOkOnPress: () {},
+      ).show();
+    } else if (e.code == 'wrong-password') {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.INFO,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Attend  !',
+        desc: 'The password is Wrong',
+        btnOkOnPress: () {},
+      ).show();
+    }
+  } catch (e) {
+    print(e);
+  }
+}

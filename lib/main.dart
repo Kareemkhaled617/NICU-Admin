@@ -1,3 +1,4 @@
+import 'package:admin_nicu/pages/home_page.dart';
 import 'package:admin_nicu/screen/home/home.dart';
 import 'package:admin_nicu/screen/login/login.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: LoginPage(),
     );
   }
 }

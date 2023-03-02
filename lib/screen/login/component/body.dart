@@ -1,6 +1,10 @@
+import 'package:admin_nicu/controller.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
+  TextEditingController email = TextEditingController();
+  TextEditingController pass = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -73,17 +77,18 @@ class Body extends StatelessWidget {
               vertical: MediaQuery.of(context).size.height / 6),
           child: SizedBox(
             width: 320,
-            child: _formLogin(),
+            child: _formLogin(context),
           ),
         )
       ],
     );
   }
 
-  Widget _formLogin() {
+  Widget _formLogin(BuildContext context) {
     return Column(
       children: [
         TextField(
+          controller: email,
           decoration: InputDecoration(
             hintText: 'Enter email or Phone number',
             filled: true,
@@ -102,6 +107,7 @@ class Body extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         TextField(
+          controller: pass,
           decoration: InputDecoration(
             hintText: 'Password',
             counterText: 'Forgot password?',
@@ -114,7 +120,9 @@ class Body extends StatelessWidget {
             labelStyle: const TextStyle(fontSize: 12),
             contentPadding: const EdgeInsets.only(left: 30),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey.shade50,),
+              borderSide: BorderSide(
+                color: Colors.blueGrey.shade50,
+              ),
               borderRadius: BorderRadius.circular(15),
             ),
             focusedBorder: OutlineInputBorder(
@@ -137,7 +145,9 @@ class Body extends StatelessWidget {
             ],
           ),
           child: ElevatedButton(
-            onPressed: () => print("it's pressed"),
+            onPressed: () {
+              login1(email.text, pass.text, context: context);
+            },
             style: ElevatedButton.styleFrom(
               primary: Colors.deepPurple,
               onPrimary: Colors.white,
@@ -189,40 +199,40 @@ class Body extends StatelessWidget {
       height: 70,
       decoration: isActive
           ? BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade100,
-            spreadRadius: 10,
-            blurRadius: 30,
-          )
-        ],
-        borderRadius: BorderRadius.circular(15),
-      )
-          : BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.grey.shade400),
-      ),
-      child: Center(
-          child: Container(
-            decoration: isActive
-                ? BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(35),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.shade400,
-                  spreadRadius: 2,
-                  blurRadius: 15,
+                  color: Colors.grey.shade100,
+                  spreadRadius: 10,
+                  blurRadius: 30,
                 )
               ],
+              borderRadius: BorderRadius.circular(15),
             )
-                : const BoxDecoration(),
-            child: Image.asset(
-              image,
-              width: 35,
+          : BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey.shade400),
             ),
-          )),
+      child: Center(
+          child: Container(
+        decoration: isActive
+            ? BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(35),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    spreadRadius: 2,
+                    blurRadius: 15,
+                  )
+                ],
+              )
+            : const BoxDecoration(),
+        child: Image.asset(
+          image,
+          width: 35,
+        ),
+      )),
     );
   }
 }
