@@ -147,3 +147,9 @@ login1(String email, pass, {context}) async {
     print(e);
   }
 }
+
+Future getHospitalData() async {
+  var fireStore = FirebaseFirestore.instance;
+  QuerySnapshot qn = await fireStore.collection("hospital").get();
+  return qn.docs;
+}

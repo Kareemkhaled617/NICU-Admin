@@ -1,11 +1,11 @@
-import 'package:admin_nicu/controller.dart';
+import 'package:admin_nicu/controllers/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 
 import '../../component/default_textfield.dart';
 import '../../component/member_ship.dart';
 
-class Home extends StatelessWidget {
+class AddCenter extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController address = TextEditingController();

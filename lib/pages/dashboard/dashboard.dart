@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 import '../../common/app_colors.dart';
 import '../../common/app_responsive.dart';
 import 'widget/calender_widget.dart';
@@ -19,8 +17,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppColor.bgColor,
         borderRadius: BorderRadius.circular(30),
@@ -35,33 +33,32 @@ class _DashboardState extends State<Dashboard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 2,
-                    child: Container(
-                      child: Column(
-                        children: [
-                          NotificationCardWidget(),
-                          SizedBox(
+                    flex: 5,
+                    child: Column(
+                      children: [
+                        NotificationCardWidget(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        if (AppResponsive.isMobile(context)) ...{
+                          CalendarWidget(),
+                          const SizedBox(
                             height: 20,
                           ),
-                          if (AppResponsive.isMobile(context)) ...{
-                            CalendarWidget(),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          },
-                          RecruitmentDataWidget(),
-                        ],
-                      ),
+                        },
+                        const RecruitmentDataWidget(),
+                      ],
                     ),
                   ),
                   if (!AppResponsive.isMobile(context))
                     Expanded(
+                      flex: 2,
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           children: [
                             CalendarWidget(),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             ProfileCardWidget(),
