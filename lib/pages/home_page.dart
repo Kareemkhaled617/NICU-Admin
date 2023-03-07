@@ -17,9 +17,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideBar(),
-      // key: Provider.of<MenuController>(context, listen: false).scaffoldKey,
       backgroundColor: AppColor.bgSideMenu,
-      body: SafeArea(
+      body: const SafeArea(
         child: Dashboard(),
       ),
     );

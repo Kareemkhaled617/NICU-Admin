@@ -1,31 +1,125 @@
 import 'package:admin_nicu/controllers/controller.dart';
+import 'package:admin_nicu/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 
 import '../../component/default_textfield.dart';
 import '../../component/member_ship.dart';
 
-class AddCenter extends StatelessWidget {
-  TextEditingController email = TextEditingController();
-  TextEditingController name = TextEditingController();
-  TextEditingController address = TextEditingController();
-  TextEditingController late = TextEditingController();
-  TextEditingController long = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController phone = TextEditingController();
-  TextEditingController profile = TextEditingController();
-  TextEditingController image1 = TextEditingController();
-  TextEditingController image2 = TextEditingController();
-  TextEditingController image3 = TextEditingController();
-  TextEditingController opining = TextEditingController();
-  TextEditingController color = TextEditingController();
+class AddCenter extends StatefulWidget {
+  AddCenter({
+    super.key,
+    required this.isAdd,
+    this.n,
+    this.p,
+    this.a,
+    this.pr,
+    this.lo,
+    this.la,
+    this.e,
+    this.cl,
+    this.im1,
+    this.im2,
+    this.im3,
+    this.op,
+    this.pa,
+    this.uid,
+    this.ty,
+    this.av,
+  });
+
+  bool isAdd;
+  String? e = '',
+      p = '',
+      n = '',
+      a = '',
+      la = '',
+      lo = '',
+      pa = '',
+      pr = '',
+      im1 = '',
+      im2 = '',
+      im3 = '',
+      op = '',
+      cl = '',
+      ty = '',
+      av = '',
+      uid = '';
+
+  @override
+  State<AddCenter> createState() => _AddCenterState();
+}
+
+class _AddCenterState extends State<AddCenter> {
+  late TextEditingController email;
+
+  late TextEditingController name;
+
+  late TextEditingController address;
+
+  late TextEditingController late;
+
+  late TextEditingController long;
+
+  late TextEditingController password;
+
+  late TextEditingController phone;
+
+  late TextEditingController profile;
+
+  late TextEditingController image1;
+
+  late TextEditingController image2;
+
+  late TextEditingController image3;
+
+  late TextEditingController opining;
+
+  late TextEditingController color;
+
   late String type;
+
   late String avilability;
 
   @override
+  void initState() {
+    email = TextEditingController(text: widget.e);
+    name = TextEditingController(text: widget.n);
+    address = TextEditingController(text: widget.a);
+    late = TextEditingController(text: widget.la);
+    long = TextEditingController(text: widget.lo);
+    password = TextEditingController(text: widget.pa);
+    phone = TextEditingController(text: widget.p);
+    profile = TextEditingController(text: widget.pr);
+    image1 = TextEditingController(text: widget.im1);
+    image2 = TextEditingController(text: widget.im2);
+    image3 = TextEditingController(text: widget.im3);
+    opining = TextEditingController(text: widget.op);
+    color = TextEditingController(text: widget.cl);
+    type = widget.ty!;
+    avilability = widget.av!;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(email.text);
+    print(name.text);
+    print(address.text);
+    print(late.text);
+    print(long.text);
+    print(password.text);
+    print(phone.text);
+    print(profile.text);
+    print(image1.text);
+    print(image2.text);
+    print(image3.text);
+    print(opining.text);
+    print(color.text);
+    print(type);
+    print(avilability);
     return Scaffold(
-      backgroundColor: Color(0xffEAE3D1),
+      backgroundColor: const Color(0xffEAE3D1),
       body: Padding(
         padding: const EdgeInsets.only(
             top: 60.0, bottom: 60.0, left: 120.0, right: 120.0),
@@ -274,29 +368,53 @@ class AddCenter extends StatelessWidget {
                             width: 20.0,
                           ),
                           MaterialButton(
-                            color: Color(0xFF0467C2),
+                            color: const Color(0xFF0467C2),
                             onPressed: () {
-                              login(
-                                  email: email.text,
-                                  pass: password.text,
-                                  name: name.text,
-                                  phone: phone.text,
-                                  address: address.text,
-                                  type: type,
-                                  availability: avilability,
-                                  late: late.text,
-                                  long: long.text,
-                                  profile: profile.text,
-                                  img1: image1.text,
-                                  img2: image2.text,
-                                  img3: image3.text,
-                                  color: color.text,
-                                  icon: '',
-                                  open: opining.text);
+                              if (widget.isAdd) {
+                                login(
+                                    email: email.text,
+                                    pass: password.text,
+                                    name: name.text,
+                                    phone: phone.text,
+                                    address: address.text,
+                                    type: type,
+                                    availability: avilability,
+                                    late: late.text,
+                                    long: long.text,
+                                    profile: profile.text,
+                                    img1: image1.text,
+                                    img2: image2.text,
+                                    img3: image3.text,
+                                    color: color.text,
+                                    icon: '',
+                                    open: opining.text);
+                              } else {
+                                updateData(
+                                    uid: widget.uid,
+                                    email: email.text,
+                                    name: name.text,
+                                    phone: phone.text,
+                                    address: address.text,
+                                    type: type,
+                                    availability: avilability,
+                                    late: late.text,
+                                    long: long.text,
+                                    profile: profile.text,
+                                    img1: image1.text,
+                                    img2: image2.text,
+                                    img3: image3.text,
+                                    color: color.text,
+                                    icon: '',
+                                    open: opining.text);
+                              }
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HomePage()));
                             },
-                            child: const Text(
-                              "Save",
-                              style: TextStyle(color: Colors.white),
+                            child: Text(
+                              widget.isAdd ? "Save" : "Update",
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ),
                         ],

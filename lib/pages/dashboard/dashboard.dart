@@ -9,6 +9,8 @@ import 'widget/profile_card_widget.dart';
 import 'widget/recruitment_data_widget.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
+
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -25,7 +27,6 @@ class _DashboardState extends State<Dashboard> {
       ),
       child: Column(
         children: [
-          /// Header Part
           HeaderWidget(),
           Expanded(
             child: SingleChildScrollView(

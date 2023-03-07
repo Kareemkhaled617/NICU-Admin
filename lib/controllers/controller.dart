@@ -153,3 +153,47 @@ Future getHospitalData() async {
   QuerySnapshot qn = await fireStore.collection("hospital").get();
   return qn.docs;
 }
+
+updateData({
+  email,
+  name,
+  type,
+  phone,
+  address,
+  late,
+  long,
+  profile,
+  img1,
+  img2,
+  img3,
+  color,
+  icon,
+  open,
+  availability,
+  uid,
+}) {
+  FirebaseFirestore.instance.collection('hospital').doc(uid).update(
+    {
+      'email': email,
+      'name': name,
+      'type': type,
+      'phone': phone,
+      'address': address,
+      'late': late,
+      'long': long,
+      'profile': profile,
+      'color': color,
+      'icon': icon,
+      'image': [img1, img2, img3],
+      'open': open,
+      'availability': availability,
+      'date': DateTime.now(),
+      'uid': uid,
+    },
+    // SetOptions(merge: true),
+  );
+}
+
+delete(String uid) {
+  FirebaseFirestore.instance.collection('hospital').doc(uid).delete();
+}

@@ -1,10 +1,12 @@
 import 'package:admin_nicu/controllers/controller.dart';
+import 'package:admin_nicu/pages/add_center/add_center.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_responsive.dart';
+import '../../home_page.dart';
 
 class RecruitmentDataWidget extends StatefulWidget {
   const RecruitmentDataWidget({super.key});
@@ -39,19 +41,45 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                           fontSize: 22,
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: AppColor.yellow,
-                            borderRadius: BorderRadius.circular(100)),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 20,
-                        ),
-                        child: Text(
-                          "View All",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColor.black),
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddCenter(
+                                    isAdd: true,
+                                    n: '',
+                                    p: '',
+                                    a: '',
+                                    pr: '',
+                                    lo: '',
+                                    la: '',
+                                    e: '',
+                                    cl: '',
+                                    im1: '',
+                                    im2: '',
+                                    im3: '',
+                                    op: '',
+                                    pa: '',
+                                    uid: '',
+                                    ty: '',
+                                    av: '',
+                                  )));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColor.yellow,
+                              borderRadius: BorderRadius.circular(100)),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
+                          child: Text(
+                            "Add Hospital",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColor.black),
+                          ),
                         ),
                       )
                     ],
@@ -87,16 +115,24 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                       ...data.map(
                         (element) => tableRow(
                           context,
-                          name: element['name']??'',
-                          color:element['availability'] == 'True'? Colors.green:Colors.red,
-                          image:  element['profile']??'',
-                          type: element['type']??'',
-                          availability: element['availability']??'',
-                          long: element['long']??''.toString(),
-                          late: element['late']??''.toString(),
-                          phone: element['phone']??'',
-                          address: element['address']??''
-
+                          name: element['name'] ?? '',
+                          color: element['availability'] == 'True'
+                              ? Colors.green
+                              : Colors.red,
+                          image: element['profile'] ?? '',
+                          type: element['type'] ?? '',
+                          availability: element['availability'] ?? '',
+                          long: element['long'].toString() ?? '',
+                          late: element['late'].toString() ?? '',
+                          phone: element['phone'] ?? '',
+                          address: element['address'] ?? '',
+                          img1: element['image'][0] ?? '',
+                          img2: element['image'][1] ?? '',
+                          img3: element['image'][2] ?? '',
+                          opening: element['open'] ?? '',
+                          colo: element['color'] ?? '',
+                          email: element['email'] ?? '',
+                          uid: element['uid'] ?? '',
                         ),
                       ),
                     ],
@@ -105,7 +141,7 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:  [
+                      children: [
                         Text("Showing 1 out of ${data.length} Results"),
                         const Text(
                           "View All",
@@ -123,16 +159,25 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
         });
   }
 
-  TableRow tableRow(context,
-      {name,
-      availability,
-      long,
-      late,
-      address,
-      phone,
-      image,
-      type,
-      color}) {
+  TableRow tableRow(
+    context, {
+    uid,
+    email,
+    name,
+    availability,
+    long,
+    late,
+    address,
+    phone,
+    image,
+    type,
+    color,
+    colo,
+    img1,
+    img2,
+    img3,
+    opening,
+  }) {
     return TableRow(
         decoration: const BoxDecoration(
           border: Border(
@@ -145,19 +190,32 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
         children: [
           //Full Name
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+            margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircleAvatar(backgroundImage: NetworkImage(image),radius: 15,),
-                const SizedBox(width: 10,),
-                Flexible(child: Text(name,maxLines: 3,))
+                CircleAvatar(
+                  backgroundImage: NetworkImage(image),
+                  radius: 15,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Flexible(
+                    child: Text(
+                  name,
+                  maxLines: 3,
+                ))
               ],
             ),
           ),
           // Designation
           if (!AppResponsive.isMobile(context)) Text(type),
-          if (!AppResponsive.isMobile(context)) Text(address,maxLines: 5,),
+          if (!AppResponsive.isMobile(context))
+            Text(
+              address,
+              maxLines: 5,
+            ),
           if (!AppResponsive.isMobile(context)) Text(phone),
           if (!AppResponsive.isMobile(context)) Text(late),
           if (!AppResponsive.isMobile(context)) Text(long),
@@ -181,13 +239,41 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
           // Menu icon
           if (!AppResponsive.isMobile(context))
             InkWell(
-              onTap: (){
+              onTap: () {
                 QuickAlert.show(
                   context: context,
                   type: QuickAlertType.success,
-                  onCancelBtnTap: (){
+                  onCancelBtnTap: () {
+                    delete(uid);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()));
                   },
-                  onConfirmBtnTap: (){},
+                  onConfirmBtnTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddCenter(
+                                  isAdd: false,
+                                  n: name,
+                                  p: phone,
+                                  a: address,
+                                  pr: image,
+                                  lo: long,
+                                  la: late,
+                                  e: email,
+                                  cl: colo,
+                                  im1: img1,
+                                  im2: img2,
+                                  im3: img3,
+                                  op: opening,
+                                  pa: '',
+                                  uid: uid,
+                                  ty: type,
+                                  av: availability,
+                                )));
+                  },
                   showCancelBtn: true,
                   cancelBtnText: 'Delete',
                   confirmBtnText: 'Update',
