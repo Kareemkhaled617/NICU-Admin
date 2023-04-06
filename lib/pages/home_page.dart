@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../common/app_colors.dart';
-import '../common/app_responsive.dart';
 import 'dashboard/dashboard.dart';
 import 'widget/side_bar_menu.dart';
 
@@ -16,7 +15,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBar(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      drawer: const SideBar(),
       backgroundColor: AppColor.bgSideMenu,
       body: const SafeArea(
         child: Dashboard(),

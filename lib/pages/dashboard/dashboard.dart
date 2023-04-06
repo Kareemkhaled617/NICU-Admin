@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../common/app_colors.dart';
 import '../../common/app_responsive.dart';
+import '../../component/card_ui.dart';
 import 'widget/calender_widget.dart';
 import 'widget/header_widget.dart';
 import 'widget/notification_card_widget.dart';
@@ -38,6 +39,10 @@ class _DashboardState extends State<Dashboard> {
                     child: Column(
                       children: [
                         NotificationCardWidget(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        buildTaskContent(),
                         const SizedBox(
                           height: 20,
                         ),

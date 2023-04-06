@@ -41,13 +41,23 @@ dependencies:
   cloud_firestore:
   firebase_auth:
   firebase_core_web: ^2.1.0
-  image_picker_web: ^3.0.0+1
   awesome_dialog:
   table_calendar:
   google_fonts:
   provider:
   quickalert: ^1.0.1
-
+  lottie:
+  eva_icons_flutter:
+  percent_indicator:
+  image_picker: ^0.8.6
+  firebase_storage:
+  firebase_storage_web:
+  firebase_database:
+  image_picker_web: ^2.0.0
+  path: ^1.8.0
+  file_picker:
+  responsive_builder:
+  flutter_login: ^4.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,6 +84,8 @@ flutter:
   assets:
     - assets/images/
     - assets/
+    - assets/animation/career.json
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

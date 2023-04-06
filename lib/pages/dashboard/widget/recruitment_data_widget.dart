@@ -1,5 +1,4 @@
 import 'package:admin_nicu/controllers/controller.dart';
-import 'package:admin_nicu/pages/add_center/add_center.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -34,54 +33,13 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Hospital Data",
+                        "CraftsMan",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.black,
                           fontSize: 22,
                         ),
                       ),
-                      InkWell(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddCenter(
-                                    isAdd: true,
-                                    n: '',
-                                    p: '',
-                                    a: '',
-                                    pr: '',
-                                    lo: '',
-                                    la: '',
-                                    e: '',
-                                    cl: '',
-                                    im1: '',
-                                    im2: '',
-                                    im3: '',
-                                    op: '',
-                                    pa: '',
-                                    uid: '',
-                                    ty: '',
-                                    av: '',
-                                  )));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColor.yellow,
-                              borderRadius: BorderRadius.circular(100)),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          child: Text(
-                            "Add Hospital",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.black),
-                          ),
-                        ),
-                      )
                     ],
                   ),
                   const Divider(
@@ -250,30 +208,7 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                         MaterialPageRoute(
                             builder: (context) => const HomePage()));
                   },
-                  onConfirmBtnTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddCenter(
-                                  isAdd: false,
-                                  n: name,
-                                  p: phone,
-                                  a: address,
-                                  pr: image,
-                                  lo: long,
-                                  la: late,
-                                  e: email,
-                                  cl: colo,
-                                  im1: img1,
-                                  im2: img2,
-                                  im3: img3,
-                                  op: opening,
-                                  pa: '',
-                                  uid: uid,
-                                  ty: type,
-                                  av: availability,
-                                )));
-                  },
+                  onConfirmBtnTap: () {},
                   showCancelBtn: true,
                   cancelBtnText: 'Delete',
                   confirmBtnText: 'Update',

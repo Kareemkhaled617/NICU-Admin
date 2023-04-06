@@ -112,7 +112,7 @@ login(
   }
 }
 
-login1(String email, pass, {context}) async {
+Future login1(String email, pass, {context}) async {
   try {
     if (email.isNotEmpty && pass.isNotEmpty) {
       UserCredential userCredential = await FirebaseAuth.instance

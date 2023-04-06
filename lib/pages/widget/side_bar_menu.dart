@@ -1,9 +1,15 @@
+import 'package:admin_nicu/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../common/app_colors.dart';
-
+import '../add_category/category.dart';
+import '../add_category/listofcategory.dart';
+import '../craftsman/craftsman.dart';
 
 class SideBar extends StatefulWidget {
+  const SideBar({super.key});
+
   @override
   _SideBarState createState() => _SideBarState();
 }
@@ -19,9 +25,9 @@ class _SideBarState extends State<SideBar> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Text(
-                "MATRIX HR",
+                "Herafy",
                 style: TextStyle(
                   color: AppColor.yellow,
                   fontSize: 25,
@@ -32,35 +38,55 @@ class _SideBarState extends State<SideBar> {
             DrawerListTile(
               title: "Dashboard",
               icon: "assets/menu_home.png",
-              press: () {},
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
             ),
             DrawerListTile(
-              title: "Recruitment",
+              title: "Add Category",
               icon: "assets/menu_recruitment.png",
-              press: () {},
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Category()));
+              },
             ),
             DrawerListTile(
-              title: "Onboarding",
-              icon: "assets/menu_onboarding.png",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Reports",
+              title: "Categories",
               icon: "assets/menu_report.png",
-              press: () {},
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ListOfCategory(
+                              deviceScreenType: DeviceScreenType.desktop,
+                            )));
+              },
             ),
             DrawerListTile(
-              title: "Calendar",
-              icon: "assets/menu_calendar.png",
-              press: () {},
+              title: "CraftsMan",
+              icon: "assets/menu_recruitment.png",
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CraftsMan(
+                              deviceScreenType: DeviceScreenType.desktop,
+                            )));
+              },
             ),
-            DrawerListTile(
-              title: "Settings",
-              icon: "assets/menu_settings.png",
-              press: () {},
-            ),
-            Spacer(),
-            Image.asset("assets/sidebar_image.png")
+            // DrawerListTile(
+            //   title: "Calendar",
+            //   icon: "assets/menu_calendar.png",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Settings",
+            //   icon: "assets/menu_settings.png",
+            //   press: () {},
+            // ),
+            const Spacer(),
+            Image.asset("assets/logo.png")
           ],
         ),
       ),
@@ -72,8 +98,10 @@ class DrawerListTile extends StatelessWidget {
   final String title, icon;
   final VoidCallback press;
 
-  const DrawerListTile({Key? key, required this.title, required this.icon, required this.press})
+  const DrawerListTile(
+      {Key? key, required this.title, required this.icon, required this.press})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

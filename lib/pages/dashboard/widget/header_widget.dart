@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
 import '../../../common/app_colors.dart';
 import '../../../common/app_responsive.dart';
 
@@ -23,7 +21,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 Icons.menu,
                 color: AppColor.black,
               ),
-              onPressed: (){},
+              onPressed: () {},
             ),
           Text(
             "Dashboard",

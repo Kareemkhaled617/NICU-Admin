@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../common/app_colors.dart';
 
-
 class ProfileCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
